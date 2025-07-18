@@ -6,8 +6,9 @@ import faiss
 import numpy as np
 import json
 from transformers import AutoTokenizer, AutoModelForCausalLM
+from data_loader import fetch_pubmed_abstracts, extract_sentences, save_json
 
-app = FastAPI() # Bu fast api yi çalıştırmak için = uvicorn app2:app --reload    komutunu kullanman lazım
+app = FastAPI() # Bu fast api yi çalıştırmak için = uvicorn app3:app --reload    komutunu kullanman lazım
 
 # ---- Embedding Model ----
 embed_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
@@ -19,20 +20,11 @@ llm_model = AutoModelForCausalLM.from_pretrained("microsoft/BioGPT")
 
 def generate_answer(prompt: str) -> str:
     inputs = llm_tokenizer(prompt, return_tensors="pt")
-    outputs = llm_model.generate(**inputs, max_new_tokens=100)
+    outputs = llm_model.generate(**inputs, max_new_tokens=300)
     return llm_tokenizer.decode(outputs[0], skip_special_tokens=True)
 
 
-# ---- Veri Yükle ----
-with open("pubmed_sentences_only.json", "r", encoding="utf-8") as f:
-    docs = json.load(f)
 
-# ---- Vektörleri Hazırla ve FAISS Index Kur ----
-doc_embeddings = embed_model.encode(docs, convert_to_numpy=True)
-dimension = doc_embeddings.shape[1]
-index = faiss.IndexFlatL2(dimension)
-index.add(doc_embeddings)
-id2doc = {i: doc for i, doc in enumerate(docs)}
 
 # ---- Request Modeli ----
 class QueryRequest(BaseModel):
@@ -42,7 +34,38 @@ class QueryRequest(BaseModel):
 
 @app.post("/query")
 def query_endpoint(request: QueryRequest):
-    
+
+
+    # 🔍 Sorgu gir
+    # query = "covid-19 vaccine immune response"
+    max_articles = 10
+
+    # 1. Makaleleri çek
+    abstracts = fetch_pubmed_abstracts(request.question, max_count=max_articles)
+
+    # 2. Cümleleri ayır
+    detailed_data, sentence_list = extract_sentences(abstracts)
+    save_json(sentence_list, "pubmed_sentences_only.json")
+
+    with open("pubmed_sentences_only.json", "r", encoding="utf-8") as f:
+        docs = json.load(f)
+
+
+
+    # ---- Vektörleri Hazırla ve FAISS Index Kur ----
+    # doc_embeddings = embed_model.encode(sentence_list, convert_to_numpy=True)
+    doc_embeddings = embed_model.encode(docs, convert_to_numpy=True)
+
+    # Şekil kontrolü
+    if len(doc_embeddings.shape) == 1:
+        doc_embeddings = doc_embeddings.reshape(1, -1)  # Tek belge ise 2D'ye çevir
+
+    dimension = doc_embeddings.shape[1]  # Artık güvenli
+    index = faiss.IndexFlatL2(dimension)
+    index.add(doc_embeddings)
+    id2doc = {i: doc for i, doc in enumerate(docs)}
+
+        
     # 1. Sorguyu embed et
     query_vec = embed_model.encode([request.question], convert_to_numpy=True)
 

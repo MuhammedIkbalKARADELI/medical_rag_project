@@ -12,3 +12,6 @@ services:
 
 volumes:
   postgres_data:
+
+
+# Bu postgres servici çalıştırmak için "docker compose up" komutunu kullanman lazım böylelikle continer oluşturabilirsin.
