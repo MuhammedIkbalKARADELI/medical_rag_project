@@ -1,14 +1,12 @@
-# from app.api_routes import router
 from fastapi import FastAPI
+from app.api_routes import router
 
-app = FastAPI(title="Medical RAG API")
+# uvicorn app.main:app --reload 
+app = FastAPI(
+    title="Medical RAG API",
+    description="Retrieval-Augmented Generation (RAG) for Medical Q&A.",
+    version="1.0.0"
+)
 
-@app.get("/")
-def sayGreeting():
-    return "Hello World"
-
-
-@app.get("/status")
-async def status():
-    return {"Message" : "OK"}
+app.include_router(router)
 
