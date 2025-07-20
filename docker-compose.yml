@@ -15,6 +15,7 @@ services:
 
   api:
     build: .
+    image: medical_rag_project
     depends_on:
       - db
     environment:
@@ -30,6 +31,7 @@ services:
 
   init:
     build: .
+    image: medical_rag_project
     depends_on:
       - db
     command: ["python", "init_db.py"]
