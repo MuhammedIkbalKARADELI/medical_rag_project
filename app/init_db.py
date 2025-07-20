@@ -1,12 +1,11 @@
 import psycopg2
-from app.config import POSTGRES_CONN_INFO_LOCAL
-## Bu kod elle kurulması için oluşturulmuştu. 
+from config import POSTGRES_CONN_INFO
 
 def create_rag_queries_table():
-    conn = psycopg2.connect(POSTGRES_CONN_INFO_LOCAL)
+    conn = psycopg2.connect(POSTGRES_CONN_INFO)
     cur = conn.cursor()
     cur.execute("""
-    CREATE TABLE IF NOT EXISTS rag_queries (
+    CREATE TABLE IF NOT EXISTS rag_log_queries(
         id SERIAL PRIMARY KEY,
         question TEXT,
         query_length TEXT,
@@ -20,14 +19,14 @@ def create_rag_queries_table():
     conn.commit()
     cur.close()
     conn.close()
-    print("Tablo başarıyla oluşturuldu!")
+    print("rag_queries database was checked")
 
 
 def create_query_documents_table():
-    conn = psycopg2.connect(POSTGRES_CONN_INFO_LOCAL)
+    conn = psycopg2.connect(POSTGRES_CONN_INFO)
     cur = conn.cursor()
     cur.execute("""
-    CREATE TABLE IF NOT EXISTS query_documents (
+    CREATE TABLE IF NOT EXISTS query_documents(
         id SERIAL PRIMARY KEY,
         query_id INTEGER REFERENCES rag_queries(id) ON DELETE CASCADE,
         pmid VARCHAR(32),
@@ -38,7 +37,7 @@ def create_query_documents_table():
     conn.commit()
     cur.close()
     conn.close()
-    print("query_documents table was created succesfully!")    
+    print("query_documents table was checked")    
 
 
 if __name__ == "__main__":

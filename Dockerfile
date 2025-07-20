@@ -2,19 +2,20 @@ FROM python:3.13
 
 WORKDIR /app
 
-# Gerekli sistem kütüphaneleri
+# Sistem gereksinimleri
 RUN apt-get update && apt-get install -y build-essential
 # Kodları kopyala
 COPY app/ /app
 
+
 # Gereksinimleri yükle
 RUN pip install --no-cache-dir --upgrade pip
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-# NLTK için verileri indir (eğer gerekiyorsa)
-RUN python -c "import nltk; nltk.download('punkt')"
+# NLTK data (özellikle "punkt") otomatik indir
+RUN python -c "import nltk; nltk.download('punkt'); nltk.download('punkt_tab')"
 
-# API'yı başlat (uvicorn ile)
+# FastAPI başlatıcı komutu
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 
 

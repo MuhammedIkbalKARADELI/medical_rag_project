@@ -1,9 +1,11 @@
 # BU DOSYADA: Arama, embedding, filtreleme, cümle çıkarımı
 from sentence_transformers import SentenceTransformer
-from app.document_loader import fetch_pubmed_abstracts, extract_sentences, relevance_filter
 import faiss
 import numpy as np
-from app.config import EN_YAKIN_DOKUMAN_SAYISI, GETIRILECEK_DOKUMAN_SAYISI
+# from app.document_loader import fetch_pubmed_abstracts, extract_sentences, relevance_filter
+# from app.config import EN_YAKIN_DOKUMAN_SAYISI, GETIRILECEK_DOKUMAN_SAYISI
+from document_loader import fetch_pubmed_abstracts, extract_sentences, relevance_filter
+from config import EN_YAKIN_DOKUMAN_SAYISI, GETIRILECEK_DOKUMAN_SAYISI
 
 embed_model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 

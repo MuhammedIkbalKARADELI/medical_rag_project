@@ -1,10 +1,14 @@
 from fastapi import APIRouter, Request
 from pydantic import BaseModel
-from app.retrieval import retrieve_documents
-from app.generation import generate_answer
+# from app.retrieval import retrieve_documents
+# from app.generation import generate_answer
+# from app.db_logger import insert_query_documents, rag_log_query
+# from app.adjunct import classify_query_length
 import time
-from app.db_logger import insert_query_documents, rag_log_query
-from app.adjunct import classify_query_length
+from retrieval import retrieve_documents
+from generation import generate_answer
+from db_logger import insert_query_documents, rag_log_query
+from adjunct import classify_query_length
 
 router = APIRouter()
 

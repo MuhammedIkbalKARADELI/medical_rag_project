@@ -1,6 +1,6 @@
 import psycopg2
 from psycopg2.extras import execute_values
-from app.config import POSTGRES_CONN_INFO
+from config import POSTGRES_CONN_INFO
 
 import sys
 import os
@@ -14,7 +14,7 @@ def rag_log_query(question, answer, query_length, retrieval_time, generation_tim
         conn = psycopg2.connect(POSTGRES_CONN_INFO)
         cur = conn.cursor()
         cur.execute("""
-            INSERT INTO rag_queries
+            INSERT INTO rag_log_queries
             (question, answer, query_length, retrieval_time_ms, generation_time_ms, total_time_ms)
             VALUES (%s, %s, %s, %s, %s, %s)
             RETURNING id

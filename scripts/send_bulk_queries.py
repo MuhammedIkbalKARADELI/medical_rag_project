@@ -5,7 +5,7 @@ import json
 API_URL = "http://localhost:8000/query"   # Kendi API adresini buraya yaz
 
 
-with open("/Users/ikbalkrdl/Desktop/Baykar Sağlıkta Yapay Zeka/medical_rag_project/scripts/100_question.json", "r", encoding="utf-8") as f:
+with open("/Users/ikbalkrdl/Desktop/Baykar Sağlıkta Yapay Zeka/medical_rag_project/scripts/50_question.json", "r", encoding="utf-8") as f:
     questions = json.load(f)
 
 results = []
@@ -13,7 +13,7 @@ results = []
 for i, question in enumerate(questions, 1):
     payload = {"question": question}
     try:
-        response = requests.post(API_URL, json=payload, timeout=300)
+        response = requests.post(API_URL, json=payload, timeout=5000)
         response.raise_for_status()
         result = response.json()
         print(f"{i}. Soru gönderildi: {question[:40]}... [Cevap geldi]")
