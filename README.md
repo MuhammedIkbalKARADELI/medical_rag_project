@@ -24,8 +24,11 @@ It combines user queries with PubMed-sourced documents and generates reliable, e
 ## 💾 **Database & Logging Architecture**
 
 The project features a **PostgreSQL-based, fine-grained logging system** designed for research transparency:
+You can find the answers to more than 100 questions we queried in the project and saved in the PostgreSQL database in the output file.
+
 
 - Each user query is recorded in the **rag_log_queries** table with:
+  - ID (Match the Query ID of the query_documents table)
   - The query text
   - Query length (short/medium/long)
   - Model-generated answer
@@ -33,9 +36,15 @@ The project features a **PostgreSQL-based, fine-grained logging system** designe
   - Answer generation time (ms)
   - Total response time (ms)
   - Query timestamp
+  - BLEU score
+  - ROUGE-L score
+  - BERTScore F1 
+  - Query timestamp
+Output: [text](Output/rag-log-queries.csv)
 
 - Every PubMed document (or sentence) used for each query is separately stored in the **query_documents** table, **linked to the log entry**:
-  - Query ID (foreign key to log table)
+  - ID
+  - Query ID (foreign key to rag_log_queries table)
   - PubMed ID (PMID)
   - Document/sentence index
 
@@ -43,6 +52,7 @@ The project features a **PostgreSQL-based, fine-grained logging system** designe
 - All steps are stored in a relational database for **auditing and analysis**
 - Model performance and answer quality can be quantitatively evaluated
 - Complete reproducibility: past queries and corresponding documents are fully tracked
+Output: [text](Output/query-documents.csv)
 
 ---
 
