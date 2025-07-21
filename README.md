@@ -100,4 +100,67 @@ response = requests.post(
 )
 print(response.json())
 ```
+Sample Response:
 
+```bash
+{
+    "question": "...",
+    "top_documents": [...],
+    "PubMed_ID": [...],
+    "answer": "...",
+    "Query_Length": "...",
+    "Retrieval_Time_MS": ...,
+    "Generation_Time_MS": ...,
+    "Total_Time_MS": ...
+}
+```
+Every query and its associated documents are persistently logged in the postgres database.
+
+
+## 🗨️ ** GUI Demo**
+```bash
+cd gui
+python main.py
+```
+While the API is running, use this desktop interface to submit questions and view model responses.
+
+
+## 🔎 **Bulk and Automated Querying**
+```bash
+cd scripts
+python send_bulk_queries.py
+```
+Sends 50 different medical questions to the API and only saves all responses as a JSON file and insterted the pstgres-db.
+
+
+## 🧪 **Testing**
+
+###  **To run FastAPI endpoint tests:**
+```bash
+cd fast_api_test
+pytest
+```
+
+### **For manual testing of the Mediacl Rag Project:**
+```bash
+cd test
+python test_query.py
+```
+
+
+## 📝 **Academic Transparency & Reproducibility**
+Every query, its relevant PubMed documents, and all model outputs are persistently stored in the database, supporting scientific integrity and repeatability.
+
+Full logs allow for post-hoc statistical analysis, error inspection, and reproducibility of results.
+
+
+
+## ⚠️ **Disclaimer**
+This system is not intended for diagnostic use; it is strictly for research and educational purposes only.
+All model-generated answers must be evaluated by qualified healthcare professionals.
+
+
+## 👤 **Author / Contact**
+Developer: Muhammed İkbal KARADELİ
+
+Contact: karadeli2001@hotmail.com
