@@ -164,3 +164,37 @@ All model-generated answers must be evaluated by qualified healthcare profession
 Developer: Muhammed İkbal KARADELİ
 
 Contact: karadeli2001@hotmail.com
+
+
+---
+
+## 📚 References
+
+1. Lewis, Patrick, et al. "Retrieval-augmented generation for knowledge-intensive NLP tasks." *Advances in Neural Information Processing Systems* 33 (2020): 9459-9474.  
+   [https://arxiv.org/abs/2005.11401](https://arxiv.org/abs/2005.11401)
+
+2. Luo, Ruoqi, et al. "BioGPT: Generative Pre-trained Transformer for Biomedical Text Generation and Mining." *bioRxiv* (2022): 2022-08.  
+   [https://arxiv.org/abs/2210.10341](https://arxiv.org/abs/2210.10341)
+
+3. Reimers, Nils, and Iryna Gurevych. "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks." *EMNLP 2019*.  
+   [https://arxiv.org/abs/1908.10084](https://arxiv.org/abs/1908.10084)
+
+4. Johnson, Jeff, Matthijs Douze, and Hervé Jégou. "Billion-scale similarity search with GPUs." *IEEE Transactions on Big Data* 7.3 (2021): 535-547.  
+   [https://arxiv.org/abs/1702.08734](https://arxiv.org/abs/1702.08734)
+
+5. PubMed: [https://pubmed.ncbi.nlm.nih.gov/](https://pubmed.ncbi.nlm.nih.gov/)
+
+
+---
+
+## 🛠️ Technology References
+
+- [FastAPI](https://fastapi.tiangolo.com/)  
+  Sebastián Ramírez. "FastAPI framework, high performance, easy to learn, fast to code, ready for production."
+- [SentenceTransformers](https://www.sbert.net/)
+- [FAISS (Facebook AI Similarity Search)](https://github.com/facebookresearch/faiss)
+- [BioGPT (Microsoft)](https://huggingface.co/microsoft/BioGPT)
+- [NLTK (Natural Language Toolkit)](https://www.nltk.org/)
+- [psycopg2 (PostgreSQL adapter for Python)](https://www.psycopg.org/)
+- [Tkinter (Python standard GUI library)](https://docs.python.org/3/library/tkinter.html)
+- [Docker](https://www.docker.com/)
