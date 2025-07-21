@@ -2,9 +2,6 @@
 from Bio import Entrez
 import nltk
 
-# NLTK tokenizer için indirme (ilk çalıştırmada gerekli)
-# nltk.download('punkt')
-# nltk.download("punkt_tab")
 
 Entrez.email = "karadeli2001@hotmail.com"
 

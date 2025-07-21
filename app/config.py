@@ -1,3 +1,4 @@
+# BU DOSYADA: Konfigürasyon sabitleri burdan.
 import os
 
 FAISS_INDEX_PATH = "models/faiss_index/"
@@ -7,11 +8,10 @@ DATA_PATH = "data/processed_docs.json"
 
 API_URL = "http://localhost:8000/query" 
 
-# BU DOSYADA: Konfigürasyon sabitlerini buraya koyabilirsin.
 EN_YAKIN_DOKUMAN_SAYISI = 10
 GETIRILECEK_DOKUMAN_SAYISI = 30
 
-# # PostgreSQL bağlantı bilgileri
+# Local daki PostgreSQL bağlantı bilgileri
 POSTGRES_USER_LOCAL = "medical_rag_user"
 POSTGRES_PASSWORD_LOCAL = "medical_rag_password"
 POSTGRES_DB_LOCAL = "medical_rag_db"
@@ -25,7 +25,7 @@ POSTGRES_CONN_INFO_LOCAL = (
     f"port='{POSTGRES_PORT_LOCAL}'"
 )
 
-
+# Docker Environment için PostgreSQL bağlantı bilgileri
 POSTGRES_USER_DOCKER = os.getenv("POSTGRES_USER", "medical_rag_user")
 POSTGRES_PASSWORD_DOCKER = os.getenv("POSTGRES_PASSWORD", "medical_rag_password")
 POSTGRES_DB_DOCKER = os.getenv("POSTGRES_DB", "medical_rag_db")
