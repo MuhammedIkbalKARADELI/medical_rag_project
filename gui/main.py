@@ -15,7 +15,7 @@ def send_query():
     result_text.insert(tk.END, "Response is waiting...\n")
 
     try:
-        response = requests.post(API_URL, json={"question": query}, timeout=60)
+        response = requests.post(API_URL, json={"question": query}, timeout=500)
         response.raise_for_status()
         data = response.json()
         # Dilersen burada PubMed_ID'leri ve daha fazlasını da gösterebilirsin.
