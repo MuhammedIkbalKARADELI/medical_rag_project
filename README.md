@@ -126,7 +126,7 @@ Sample Response:
 Every query and its associated documents are persistently logged in the postgres database.
 
 
-## 🗨️ ** GUI Demo**
+## 🗨️ **GUI Demo**
 ```bash
 cd gui
 python main.py
