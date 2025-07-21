@@ -17,8 +17,6 @@ It combines user queries with PubMed-sourced documents and generates reliable, e
 
 ## 🗃️ Project Directory Structure
 
-
-
 ---
 
 ## 💾 **Database & Logging Architecture**
@@ -36,9 +34,9 @@ You can find the answers to more than 100 questions we queried in the project an
   - Answer generation time (ms)
   - Total response time (ms)
   - Query timestamp
-  - BLEU score
-  - ROUGE-L score
-  - BERTScore F1 
+  - Bleu score
+  - Rouge-L score
+  - Bert Score F1 
   - Query timestamp
 Output: [text](Output/rag-log-queries.csv)
 
