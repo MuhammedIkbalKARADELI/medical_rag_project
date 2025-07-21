@@ -99,7 +99,7 @@ def query_endpoint(request: QueryRequest):
         "PubMed_ID" : retrieved_pmid,     
         "answer": answer,
         "Query_Length": size_of_query,  
-        "Retrieval_Time_MS": retrieval_time,
+        "Retrieval_time_MS": retrieval_time,
         "Generation_Time_MS": generation_time,
         "Total_Time_MS": total_time
     }

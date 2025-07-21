@@ -5,7 +5,7 @@ import json
 API_URL = "http://localhost:8000/query"   # Kendi API adresini buraya yaz
 
 
-with open("/Users/ikbalkrdl/Desktop/Baykar Sağlıkta Yapay Zeka/medical_rag_project/scripts/50_question.json", "r", encoding="utf-8") as f:
+with open("/Users/ikbalkrdl/Desktop/Baykar Sağlıkta Yapay Zeka/medical_rag_project/scripts/150_question.json", "r", encoding="utf-8") as f:
     questions = json.load(f)
 
 results = []

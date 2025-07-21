@@ -32,7 +32,7 @@ def create_rag_queries_table():
         total_time_ms INTEGER,
         bleu_score FLOAT,
         rouge_l_score FLOAT,
-        bertscore_f1 FLOAT
+        bertscore_f1 FLOAT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
     """)

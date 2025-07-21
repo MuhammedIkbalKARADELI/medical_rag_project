@@ -9,3 +9,5 @@ requests
 biopython
 sacremoses
 protobuf
+bert_score
+rouge

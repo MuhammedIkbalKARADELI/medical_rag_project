@@ -15,7 +15,7 @@ def rag_log_query(question, answer, query_length, retrieval_time, generation_tim
         cur = conn.cursor()
         cur.execute("""
             INSERT INTO rag_log_queries
-            (question, answer, query_length, retrieval_time, generation_time, total_time, bleu_score, rouge_l_score, bertscore_f1)
+            (question, answer, query_length, retrieval_time_ms, generation_time_ms, total_time_ms, bleu_score, rouge_l_score, bertscore_f1)
             VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
             RETURNING id
         """, (question, answer, query_length, retrieval_time, generation_time, total_time, bleu_score, rouge_l_score, bertscore_f1))
