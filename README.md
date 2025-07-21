@@ -39,7 +39,7 @@ You can find the answers to more than 100 questions we queried in the project an
   - Bert Score F1 
   - Query timestamp
   
-Output: [text](Output/rag-log-queries.csv)
+  - Output: [text](Output/rag-log-queries.csv)
 
 - Every PubMed document (or sentence) used for each query is separately stored in the **query_documents** table, **linked to the log entry**:
   - ID
@@ -47,7 +47,7 @@ Output: [text](Output/rag-log-queries.csv)
   - PubMed ID (PMID)
   - Document/sentence index
 
-Output: [text](Output/query-documents.csv)
+  - Output: [text](Output/query-documents.csv)
 
 **Benefits:**
 - All steps are stored in a relational database for **auditing and analysis**
