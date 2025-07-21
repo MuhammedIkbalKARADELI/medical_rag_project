@@ -50,7 +50,7 @@ The project features a **PostgreSQL-based, fine-grained logging system** designe
 
 1. **Clone the repository**
     ```bash
-    git clone https://github.com/yourusername/medical_rag_project.git
+    git clone https://github.com/MuhammedIkbalKARADELI/medical_rag_project.git
     cd medical_rag_project
     ```
 
