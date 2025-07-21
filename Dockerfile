@@ -13,7 +13,7 @@ RUN pip install --no-cache-dir --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # NLTK data (özellikle "punkt") otomatik indir
-RUN python -c "import nltk; nltk.download('punkt'); nltk.download('punkt_tab')"
+RUN python -c "import nltk; nltk.download('punkt'); nltk.download('punkt_tab'); nltk.download('wordnet'); nltk.download('omw-1.4')"
 
 # FastAPI başlatıcı komutu
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

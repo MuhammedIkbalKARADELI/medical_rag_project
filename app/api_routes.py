@@ -10,6 +10,10 @@ from generation import generate_answer
 from db_logger import insert_query_documents, rag_log_query
 from adjunct import classify_query_length
 
+from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
+from rouge import Rouge
+import bert_score
+
 router = APIRouter()
 
 @router.get("/status")
@@ -42,6 +46,37 @@ def query_endpoint(request: QueryRequest):
     size_of_query = classify_query_length(request.question)
 
 
+    try:
+        # Burada, referans cevapları soruya göre eşleştir (örnek için ilk referansı alıyoruz)
+        ref_answer = retrieved_docs[0]  # (Düzenle: doğru referansı seçmek için)
+    except Exception:
+        ref_answer = None
+
+    bleu_score = None
+    rouge_l_score = None
+    bertscore_f1 = None
+
+    if ref_answer:
+        # BLEU
+        smoother = SmoothingFunction().method2
+        bleu_score = sentence_bleu([ref_answer.split()], answer.split(), smoothing_function=smoother)
+
+        # ROUGE-L
+        try:
+            rouge = Rouge()
+            rouge_scores = rouge.get_scores(answer, ref_answer)
+            rouge_l_score = rouge_scores[0]["rouge-l"]["f"]
+        except Exception:
+            rouge_l_score = None
+
+        # BERTScore (batch ile hızlı çalışmazsa, tek örnek için)
+        try:
+            P, R, F1 = bert_score.score([answer], [ref_answer], lang="en")
+            bertscore_f1 = float(F1[0])
+        except Exception:
+            bertscore_f1 = None
+
+
 
     # Sorgu sonrası loglama:
     rag_query_id = rag_log_query(
@@ -50,7 +85,10 @@ def query_endpoint(request: QueryRequest):
             query_length=size_of_query,
             retrieval_time=retrieval_time,
             generation_time=generation_time,
-            total_time=total_time
+            total_time=total_time,
+            bleu_score=bleu_score,
+            rouge_l_score=rouge_l_score,
+            bertscore_f1=bertscore_f1
         )
     insert_query_documents(rag_query_id, retrieved_pmid)
 

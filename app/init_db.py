@@ -30,6 +30,9 @@ def create_rag_queries_table():
         retrieval_time_ms INTEGER,
         generation_time_ms INTEGER,
         total_time_ms INTEGER,
+        bleu_score FLOAT,
+        rouge_l_score FLOAT,
+        bertscore_f1 FLOAT
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     );
     """)

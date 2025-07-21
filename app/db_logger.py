@@ -7,7 +7,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'app')))
 
 
-def rag_log_query(question, answer, query_length, retrieval_time, generation_time, total_time):
+def rag_log_query(question, answer, query_length, retrieval_time, generation_time, total_time, bleu_score, rouge_l_score, bertscore_f1):
     conn = None
     query_id = None
     try:
@@ -15,10 +15,10 @@ def rag_log_query(question, answer, query_length, retrieval_time, generation_tim
         cur = conn.cursor()
         cur.execute("""
             INSERT INTO rag_log_queries
-            (question, answer, query_length, retrieval_time_ms, generation_time_ms, total_time_ms)
-            VALUES (%s, %s, %s, %s, %s, %s)
+            (question, answer, query_length, retrieval_time, generation_time, total_time, bleu_score, rouge_l_score, bertscore_f1)
+            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)
             RETURNING id
-        """, (question, answer, query_length, retrieval_time, generation_time, total_time))
+        """, (question, answer, query_length, retrieval_time, generation_time, total_time, bleu_score, rouge_l_score, bertscore_f1))
         query_id = cur.fetchone()[0]  # Yeni eklenen kaydın ID'sini alır
         conn.commit()
         cur.close()
