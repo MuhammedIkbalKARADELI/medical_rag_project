@@ -87,3 +87,13 @@ Models and data files will be downloaded automatically on the first run.
 ### 1. **API Status Check**
 ```bash
 curl http://localhost:8000/status
+
+### 1. **Ask a Medical Question (POST /query)**
+import requests
+response = requests.post(
+    "http://localhost:8000/query",
+    json={"question": "What are the symptoms of anemia?"}
+)
+print(response.json())
+
+
