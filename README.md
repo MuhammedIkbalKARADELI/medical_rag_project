@@ -38,6 +38,7 @@ You can find the answers to more than 100 questions we queried in the project an
   - Rouge-L score
   - Bert Score F1 
   - Query timestamp
+  
 Output: [text](Output/rag-log-queries.csv)
 
 - Every PubMed document (or sentence) used for each query is separately stored in the **query_documents** table, **linked to the log entry**:
@@ -46,11 +47,13 @@ Output: [text](Output/rag-log-queries.csv)
   - PubMed ID (PMID)
   - Document/sentence index
 
+Output: [text](Output/query-documents.csv)
+
 **Benefits:**
 - All steps are stored in a relational database for **auditing and analysis**
 - Model performance and answer quality can be quantitatively evaluated
 - Complete reproducibility: past queries and corresponding documents are fully tracked
-Output: [text](Output/query-documents.csv)
+
 
 ---
 
