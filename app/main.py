@@ -1,5 +1,4 @@
 from fastapi import FastAPI
-# from app.api_routes import router
 from api_routes import router
 
 # uvicorn app.main:app --reload 

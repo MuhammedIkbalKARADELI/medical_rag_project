@@ -1,5 +1,3 @@
-
-# # Docker compose up ile çalışmaktadır.... (localde çalıştırılacaksa eğer)
 version: '3.8'
 services:
   db:

@@ -18,13 +18,3 @@ RUN python -c "import nltk; nltk.download('punkt'); nltk.download('punkt_tab'); 
 # FastAPI başlatıcı komutu
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
 
-
-
-# cd medical_rag_project
-# docker compose build
-# docker compose up
-
-### or 
-
-# docker build -t my-medical-rag .
-# docker run -p 8000:8000 my-medical-rag

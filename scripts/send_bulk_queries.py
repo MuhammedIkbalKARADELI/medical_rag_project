@@ -24,6 +24,6 @@ for i, question in enumerate(questions, 1):
 
 # Sonuçları JSON dosyasına kaydetmek için (isteğe bağlı):
 import json
-with open("api_results.json", "w", encoding="utf-8") as f:
+with open("scripts/api_results.json", "w", encoding="utf-8") as f:
     json.dump(results, f, ensure_ascii=False, indent=2)
 print("Tüm sorgular tamamlandı ve sonuçlar kaydedildi.")
